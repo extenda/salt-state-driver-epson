@@ -17,5 +17,6 @@ extract-epson-adk-driver:
 
 install-epson-adk-driver:
   cmd.run:
-    - name: 'sh /tmp/Epson_JavaPOS_ADK_1141_for_Linux/JavaPOSInstall.sh'
+    - name: 'cd /tmp/Epson_JavaPOS_ADK_1141_for_Linux && sh JavaPOSInstall.sh'
+    - cwd: '/tmp/Epson_JavaPOS_ADK_1141_for_Linux'
     - unless: 'ls /opt/EpsonJavaPOS'
