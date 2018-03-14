@@ -1,0 +1,40 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: salt_solo
+  is_file_root: true
+  salt_bootstrap_url: https://bootstrap.saltstack.com
+  salt_bootstrap_options: -X -p git -p curl
+  log_level: <%= ENV['SALT_DEBUG_LEVEL'] || 'info' %>
+  salt_copy_filter:
+    - .git
+    - .gitignore
+    - .kitchen
+    - .kitchen.yml
+    - Gemfile
+    - Gemfile.lock
+    - test
+  dependencies:
+    - name: java
+      repo: git
+      source: https://github.com/extenda-saltstack-formulas/java-oracle-formula.git
+  grains:
+    customer: auchan
+  pillars_from_directories: 
+    - pillar-data
+
+platforms:
+  - name: centos-7.3
+
+suites:
+  - name: centraloffice
+    provisioner:
+      grains:
+        device: epsonprinter
+      state_top:
+        base:
+          '*':
+              - epson.epson_javapos_adk
+
