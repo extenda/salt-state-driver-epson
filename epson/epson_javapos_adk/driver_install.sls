@@ -24,5 +24,6 @@ install-epson-adk-driver:
       - PCS_SETTING_DIR: /var/epson_pcs
       - EPSON_JPOS_INSTALL: /opt/EpsonJavaPOS
       - Java_HOME: /opt/jdk1.8.0_144
+      - JAVA_HOME: /opt/jdk1.8.0_144
       - LD_LIBRARY_PATH: /opt/EpsonJavaPOS:/opt/EpsonJavaPOS/lib:/opt/EpsonJavaPOS/bin:$LD_LIBRARY_PATH
     - unless: 'ls /opt/EpsonJavaPOS'
