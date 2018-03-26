@@ -1,12 +1,7 @@
-epson-adk-env:
-   environ.setenv:
-     - name: epson-env-dict
-     - value:
-         PCS_INSTALL_DIR: /opt/epson_pcs/portcommunicationservice
-         PCS_SETTING_DIR: /var/epson_pcs
-         EPSON_JPOS_INSTALL: /opt/EpsonJavaPOS
-         Java_HOME: /opt/jdk1.8.0_144
-         LD_LIBRARY_PATH: /opt/EpsonJavaPOS:/opt/EpsonJavaPOS/lib:/opt/EpsonJavaPOS/bin:$LD_LIBRARY_PATH
+epson-environment:
+   file.managed:
+     - name: /etc/profile.d/epson.sh
+     - source: salt://{{ slspath }}/files/environment.sh
 
 extract-epson-adk-driver:
   archive.extracted:
@@ -19,11 +14,4 @@ install-epson-adk-driver:
   cmd.run:
     - name: 'env && bash JavaPOSInstall.sh'
     - cwd: '/tmp/Epson_JavaPOS_ADK_1141_for_Linux'
-    - env:
-      - PCS_INSTALL_DIR: /opt/epson_pcs/portcommunicationservice
-      - PCS_SETTING_DIR: /var/epson_pcs
-      - EPSON_JPOS_INSTALL: /opt/EpsonJavaPOS
-      - Java_HOME: /opt/jdk1.8.0_144
-      - JAVA_HOME: /opt/jdk1.8.0_144
-      - LD_LIBRARY_PATH: /opt/EpsonJavaPOS:/opt/EpsonJavaPOS/lib:/opt/EpsonJavaPOS/bin:$LD_LIBRARY_PATH
     - unless: 'ls /opt/EpsonJavaPOS'
