@@ -17,7 +17,7 @@ extract-epson-adk-driver:
 
 install-epson-adk-driver:
   cmd.run:
-    - name: 'sh JavaPOSInstall.sh'
+    - name: 'env && bash JavaPOSInstall.sh'
     - cwd: '/tmp/Epson_JavaPOS_ADK_1141_for_Linux'
     - env:
       - PCS_INSTALL_DIR: /opt/epson_pcs/portcommunicationservice
