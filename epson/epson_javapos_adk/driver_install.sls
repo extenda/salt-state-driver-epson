@@ -2,6 +2,7 @@ epson-environment:
    file.managed:
      - name: /etc/profile.d/epson.sh
      - source: salt://{{ slspath }}/files/environment.sh
+     - mode: 775
 
 extract-epson-adk-driver:
   archive.extracted:
